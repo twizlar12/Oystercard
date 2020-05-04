@@ -9,6 +9,10 @@ describe Oystercard do
     expect(subject).to respond_to(:top_up).with(1).argument
   end
 
+  it "Balance of card will increase by the amount added" do
+    expect(subject.top_up(5)).to eq("Oystercard topped up by £5")
+  end
+
 end
 
 

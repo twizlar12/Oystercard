@@ -7,6 +7,8 @@ class Oystercard
   end
 
   def top_up(amount)
+    @balance += amount
+    "Oystercard topped up by £#{amount}"
   end
 
 end
