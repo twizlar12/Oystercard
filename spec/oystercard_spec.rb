@@ -38,12 +38,20 @@ describe Oystercard do
   end
 
   it "After touch out customer will not be in a journey " do
+    subject.top_up(5)
+    subject.touch_in
     subject.touch_out
     expect(subject).not_to be_in_journey
   end
 
   it "To touch in, balance must be greater than or equal to £1" do
     expect { subject.touch_in }.to raise_error("Insufficient funds, balance is: £0, please top up")
+  end
+
+  it "When journey complete reduce the balance by minimum fare" do
+    subject.top_up(5)
+    subject.touch_in
+    expect { subject.touch_out }.to change{ subject.balance }.by(-Oystercard::MIN_FARE)
   end
 
 end
