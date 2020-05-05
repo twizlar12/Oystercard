@@ -16,4 +16,13 @@ class Oystercard
         "Oystercard topped up by £#{amount}"
     end
   end
+
+  def deduct(amount)
+    if @balance <= 0
+      fail "Failed, your balance is £#{@balance}"
+    else
+      @balance -= amount
+      "Oystercard deducted by £#{amount}"
+    end
+  end
 end

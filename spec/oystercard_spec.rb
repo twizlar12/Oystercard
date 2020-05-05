@@ -9,7 +9,7 @@ describe Oystercard do
     expect(subject).to respond_to(:top_up).with(1).argument
   end
 
-  it "Balance of card will increase by the amount added" do
+  it "Balance of card will increase by the amount topped up" do
     expect(subject.top_up(5)).to eq("Oystercard topped up by £5")
   end
 
@@ -17,6 +17,16 @@ describe Oystercard do
     subject.top_up(Oystercard::MAX_BALANCE)
     expect { subject.top_up(5) }.to raise_error("Top up failed, maximum balance cannot exceed £90")
   end
+
+  it "Balance of card will decrease by the amount deducted" do
+    subject.top_up(10)
+    expect(subject.deduct(5)).to eq("Oystercard deducted by £5")
+  end 
+
+  it "Balance of card will not decrease further if amount is less than or equal to zero" do
+    expect { subject.deduct(5) }.to raise_error("Failed, your balance is £0")
+  end 
+
 end
 
 
