@@ -20,12 +20,9 @@ describe Oystercard do
 
   it "Balance of card will decrease by the amount deducted" do
     subject.top_up(10)
-    expect(subject.deduct(5)).to eq("Oystercard deducted by £5")
+    subject.touch_in
+    expect(subject.touch_out).to eq("Oystercard deducted by £1")
   end 
-
-  it "Balance of card will not decrease further if amount is less than or equal to zero" do
-    expect { subject.deduct(5) }.to raise_error("Failed, your balance is £0")
-  end
 
   it "Initially not in a journey" do
     expect(subject).not_to be_in_journey

@@ -45,11 +45,7 @@ class Oystercard
   private
   
   def deduct(amount)
-    if @balance <= 0
-      fail "Failed, your balance is £#{@balance}"
-    else
-      @balance -= amount
-      "Oystercard deducted by £#{amount}"
-    end
+    @balance -= amount
+    "Oystercard deducted by £#{amount}"
   end
 end
