@@ -6,6 +6,7 @@ class Oystercard
 
   def initialize
     @balance = 0
+    @in_use = false
   end
 
   def top_up(amount)
@@ -25,4 +26,21 @@ class Oystercard
       "Oystercard deducted by £#{amount}"
     end
   end
+
+  def in_journey?
+    if @in_use
+      true
+    else
+      false
+    end
+  end
+
+  def touch_in
+    @in_use = true
+  end
+
+  def touch_out
+    @in_use = false
+  end
+  
 end

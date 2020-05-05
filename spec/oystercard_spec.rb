@@ -25,10 +25,20 @@ describe Oystercard do
 
   it "Balance of card will not decrease further if amount is less than or equal to zero" do
     expect { subject.deduct(5) }.to raise_error("Failed, your balance is £0")
-  end 
+  end
+
+  it "Initially not in a journey" do
+    expect(subject).not_to be_in_journey
+  end
+
+  it "After touch in customer will be in a journey " do
+    subject.touch_in
+    expect(subject).to be_in_journey
+  end
+
+  it "After touch out customer will not be in a journey " do
+    subject.touch_out
+    expect(subject).not_to be_in_journey
+  end
 
 end
-
-
-
-
