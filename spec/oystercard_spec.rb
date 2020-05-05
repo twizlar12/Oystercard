@@ -32,6 +32,7 @@ describe Oystercard do
   end
 
   it "After touch in customer will be in a journey " do
+    subject.top_up(5)
     subject.touch_in
     expect(subject).to be_in_journey
   end
@@ -39,6 +40,10 @@ describe Oystercard do
   it "After touch out customer will not be in a journey " do
     subject.touch_out
     expect(subject).not_to be_in_journey
+  end
+
+  it "To touch in, balance must be greater than or equal to £1" do
+    expect { subject.touch_in }.to raise_error("Insufficient funds, balance is: £0, please top up")
   end
 
 end
