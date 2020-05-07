@@ -35,12 +35,14 @@ class Oystercard
     else 
       @journeys.merge!(Entry_station: entry_station)
       @in_use = true 
+      @entry_station = entry_station
     end
   end
   
   def touch_out(exit_station)
     @journeys.merge!(Exit_station: exit_station)
     @in_use = false
+    @exit_station = exit_station
     deduct(MIN_FARE)
   end
 
